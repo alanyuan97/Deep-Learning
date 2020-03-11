@@ -7,7 +7,7 @@ from nltk.translate.bleu_score import sentence_bleu
 import sys
 
 download = True
-temperatures = np.arange(0,1,0.1)
+temperatures = np.arange(0,1.1,0.1)
 bleu_score = 0
 n_eval = 500
 results = []
@@ -86,8 +86,14 @@ for temperature in temperatures:
     bleu_score += sentence_bleu(reference, candidate)
     # print(bleu_score/n_eval)
   results.append(bleu_score/n_eval)
+  print(f"Finished Temp {temperature}")
 
+print(f"Temp: {temperatures}")
+print(f"Score: {results}")
 plt.plot(temperatures,results,label= 'BLUE score vs. Temperature')
 plt.grid()
 plt.legend()
 plt.show()
+
+# Temp: [0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ]
+# Score: [0.33064787409782326, 0.7088449833692573, 1.1121576560614994, 1.5015591471042609, 1.8758053536668606, 2.246703281202218, 2.6216566240181742, 2.9617844281155663, 3.313229724077255, 3.6095638398928624, 3.9019044768169446]
