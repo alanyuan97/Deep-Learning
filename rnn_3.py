@@ -62,6 +62,7 @@ if download:
 text_gen_model = keras.models.load_model("./text_model.h5")
 
 for temperature in temperatures:
+  bleu_score = 0
   for _ in range(n_eval):
     start = np.random.randint(0, len(x_test)-seq_length-1)
     pattern = x_test[start].tolist()
